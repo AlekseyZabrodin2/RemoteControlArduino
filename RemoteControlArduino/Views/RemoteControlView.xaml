@@ -12,9 +12,49 @@
     mc:Ignorable="d">
 
 
-    <Grid>
+    <Grid ShowGridLines="True">
 
-        <Button Command="{Binding ButtonClickCommand}" Content="Button" />
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <ComboBox
+            Grid.Column="2"
+            Width="70"
+            Height="40"
+            Margin="10,5"
+            VerticalContentAlignment="Center"
+            ItemsSource="{Binding PortNamesList}"
+            SelectedItem="{Binding SelectedPort}" />
+        <Button
+            Grid.Column="3"
+            Width="70"
+            Height="40"
+            Margin="10,5"
+            Command="{Binding ConnectPortCommand}"
+            Content="{Binding ConnectButtonName}" />
+        <Button
+            Grid.Column="4"
+            Width="70"
+            Height="40"
+            Margin="10,5"
+            HorizontalContentAlignment="Center"
+            Command="{Binding UpdatePortsCommand}"
+            Content="Update&#10;  Ports" />
+
 
 
 

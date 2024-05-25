@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
 
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
 
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -31,19 +31,35 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
+        <Border
+            Grid.Column="1"
+            Margin="10"
+            BorderBrush="Black"
+            BorderThickness="1">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="{Binding OutputInfoColor}"
+                Text="{Binding OutputInfo}" />
+        </Border>
+
         <ComboBox
             Grid.Column="2"
             Width="70"
             Height="40"
             Margin="10,5"
             VerticalContentAlignment="Center"
+            Foreground="{Binding ComboBoxColor}"
+            IsEnabled="{Binding PortIsEnabled}"
             ItemsSource="{Binding PortNamesList}"
             SelectedItem="{Binding SelectedPort}" />
+
         <Button
             Grid.Column="3"
             Width="70"
             Height="40"
             Margin="10,5"
+            Background="{Binding ConnectButtonColor}"
             Command="{Binding ConnectPortCommand}"
             Content="{Binding ConnectButtonName}" />
         <Button
@@ -51,7 +67,6 @@
             Width="70"
             Height="40"
             Margin="10,5"
-            HorizontalContentAlignment="Center"
             Command="{Binding UpdatePortsCommand}"
             Content="Update&#10;  Ports" />
 

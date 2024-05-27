@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace RemoteControlArduino.ViewModels
 {
@@ -26,10 +27,16 @@ namespace RemoteControlArduino.ViewModels
         public bool? _portIsEnabled = true;
 
         [ObservableProperty]
-        public SerialPort _serialPort = new SerialPort();
+        public bool _checkBoxDiod;
+
+        [ObservableProperty]
+        public SerialPort _selectedSerialPort = new SerialPort();
 
         [ObservableProperty]
         public string? _outputInfo;
+
+        [ObservableProperty]
+        public string? _arduinoInfo = "Привет";
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(ConnectPortCommand))]
@@ -48,7 +55,7 @@ namespace RemoteControlArduino.ViewModels
         [ObservableProperty]
         public Brush _connectButtonColor = Brushes.YellowGreen;
 
-
+        
 
         [RelayCommand(CanExecute = nameof(ConectionButtonIsEnabled))]
         private void ConnectPort()
@@ -57,8 +64,9 @@ namespace RemoteControlArduino.ViewModels
             {
                 try
                 {
-                    SerialPort.PortName = SelectedPort;
-                    SerialPort.Open();
+                    SelectedSerialPort.PortName = SelectedPort;
+                    SelectedSerialPort.BaudRate = 250000;
+                    SelectedSerialPort.Open();
                     PortIsEnabled = false;
 
                     ComboBoxColor = Brushes.Gray;
@@ -66,7 +74,7 @@ namespace RemoteControlArduino.ViewModels
                     OutputInfoColor = Brushes.Black;
                     ConnectButtonName = "Disconnect";
                     ConnectButtonColor = Brushes.Orange;
-
+                                        
                     UpdateButtonIsEnabled = false;
                 }
                 catch (Exception ex)
@@ -77,7 +85,7 @@ namespace RemoteControlArduino.ViewModels
             }
             else if (ConnectButtonName == "Disconnect")
             {
-                SerialPort.Close();
+                SelectedSerialPort.Close();
                 ConnectButtonName = "Connect";
                 ConnectButtonColor = Brushes.YellowGreen;
 
@@ -88,7 +96,6 @@ namespace RemoteControlArduino.ViewModels
 
                 UpdateButtonIsEnabled = true;
             }
-
         }
 
         [RelayCommand(CanExecute = nameof(UpdateButtonIsEnabled))]
@@ -102,6 +109,25 @@ namespace RemoteControlArduino.ViewModels
                 ConectionButtonIsEnabled = true;
             }
         }
+
+        [RelayCommand]
+        private void UpdateArduino()
+        {
+            //ArduinoInfo = SerialPorts.ReadLine();
+            if (!SelectedSerialPort.IsOpen)
+            {
+                return;
+            }
+            if (CheckBoxDiod == true)
+            {
+                SelectedSerialPort.Write("0");
+            }
+            else
+            {
+                SelectedSerialPort.Write("1");
+            }
+        }
+
 
     }
 }

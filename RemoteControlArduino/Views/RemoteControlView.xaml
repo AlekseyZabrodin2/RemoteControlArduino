@@ -11,6 +11,13 @@
     d:DataContext="{d:DesignInstance Type=viewmodels:RemoteControlViewModel}"
     mc:Ignorable="d">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
     <Grid ShowGridLines="False">
 
@@ -31,6 +38,14 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
+
+        <ToggleButton
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Command="{Binding UpdateArduinoCommand}"
+            IsChecked="{Binding CheckBoxDiod}"
+            Style="{StaticResource ToggleButtonStyle}" />
+
         <Border
             Grid.Column="1"
             Margin="10"
@@ -40,7 +55,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Foreground="{Binding OutputInfoColor}"
-                Text="{Binding OutputInfo}" />
+                Text="{Binding OutputInfo, Mode=TwoWay}" />
         </Border>
 
         <ComboBox

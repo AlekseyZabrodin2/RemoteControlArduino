@@ -5,9 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:RemoteControlArduino.ViewModels"
-    Title="RemoteControlView"
-    Width="800"
-    Height="450"
+    Title="Remote Control"
+    Width="270"
+    Height="620"
     d:DataContext="{d:DesignInstance Type=viewmodels:RemoteControlViewModel}"
     mc:Ignorable="d">
 
@@ -19,74 +19,225 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid ShowGridLines="False">
+    <Border
+        Width="Auto"
+        Height="Auto"
+        Margin="5"
+        BorderBrush="Black"
+        BorderThickness="1">
 
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+        <Grid ShowGridLines="False">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
 
-        <ToggleButton
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Command="{Binding UpdateArduinoCommand}"
-            IsChecked="{Binding CheckBoxDiod}"
-            Style="{StaticResource ToggleButtonStyle}" />
-
-        <Border
-            Grid.Column="1"
-            Margin="10"
-            BorderBrush="Black"
-            BorderThickness="1">
-            <TextBlock
+            <ToggleButton
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,10,10,5"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Foreground="{Binding OutputInfoColor}"
-                Text="{Binding OutputInfo, Mode=TwoWay}" />
-        </Border>
+                Command="{Binding UpdateArduinoCommand}"
+                IsChecked="{Binding CheckBoxDiod}"
+                Style="{StaticResource ToggleButtonStyle}" />
 
-        <ComboBox
-            Grid.Column="2"
-            Width="70"
-            Height="40"
-            Margin="10,5"
-            VerticalContentAlignment="Center"
-            Foreground="{Binding ComboBoxColor}"
-            IsEnabled="{Binding PortIsEnabled}"
-            ItemsSource="{Binding PortNamesList}"
-            SelectedItem="{Binding SelectedPort}" />
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="5"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <TextBlock
+                    Padding="3"
+                    Height="25"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    FontWeight="DemiBold"
+                    Foreground="{Binding OutputInfoColor}"
+                    Text="{Binding OutputInfo, Mode=TwoWay}" />
+            </Border>
 
-        <Button
-            Grid.Column="3"
-            Width="70"
-            Height="40"
-            Margin="10,5"
-            Background="{Binding ConnectButtonColor}"
-            Command="{Binding ConnectPortCommand}"
-            Content="{Binding ConnectButtonName}" />
-        <Button
-            Grid.Column="4"
-            Width="70"
-            Height="40"
-            Margin="10,5"
-            Command="{Binding UpdatePortsCommand}"
-            Content="Update&#10;  Ports" />
+            <ComboBox
+                Grid.Row="2"
+                Grid.Column="0"
+                Width="70"
+                Height="40"
+                Margin="5"
+                VerticalContentAlignment="Center"
+                Foreground="{Binding ComboBoxColor}"
+                IsEnabled="{Binding PortIsEnabled}"
+                ItemsSource="{Binding PortNamesList}"
+                SelectedItem="{Binding SelectedPort}" />
+
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="70"
+                Height="40"
+                Margin="5"
+                Background="{Binding ConnectButtonColor}"
+                Command="{Binding ConnectPortCommand}"
+                Content="{Binding ConnectButtonName}" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                Width="70"
+                Height="40"
+                Margin="5"
+                Command="{Binding UpdatePortsCommand}"
+                Content="Update&#10;  Ports" />
+
+            <Border
+                Grid.Row="3"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="5"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <TextBlock />
+            </Border>
 
 
+            <Button
+                Grid.Row="6"
+                Grid.Column="0"
+                Width="70"
+                Height="40"
+                Margin="5,10,5,5"
+                Content="🔊" />
 
+            <Button
+                Grid.Row="6"
+                Grid.Column="1"
+                Width="70"
+                Height="40"
+                Margin="5,10,5,5"
+                Content="🔼" />
 
-    </Grid>
+            <Button
+                Grid.Row="6"
+                Grid.Column="2"
+                Width="70"
+                Height="40"
+                Margin="5,10,5,5"
+                Content="ON" />
+
+            <Button
+                Grid.Row="7"
+                Grid.Column="0"
+                Width="70"
+                Height="40"
+                Margin="5,5,5,10"
+                Content="Mode" />
+
+            <Button
+                Grid.Row="7"
+                Grid.Column="1"
+                Width="70"
+                Height="40"
+                Margin="5,5,5,10"
+                Content="🔽" />
+
+            <Button
+                Grid.Row="7"
+                Grid.Column="2"
+                Width="70"
+                Height="40"
+                Margin="5,5,5,10"
+                Content="🔄️" />
+
+            <Button
+                Grid.Row="8"
+                Grid.Column="0"
+                Width="70"
+                Height="40"
+                Margin="5,10,5,5"
+                Content="Timer On" />
+
+            <Button
+                Grid.Row="8"
+                Grid.Column="1"
+                Width="70"
+                Height="40"
+                Margin="5,10,5,5"
+                Content="🌿" />
+
+            <Button
+                Grid.Row="8"
+                Grid.Column="2"
+                Width="70"
+                Height="40"
+                Margin="5,10,5,5"
+                Content="↖️&#10;    ↘️" />
+
+            <Button
+                Grid.Row="9"
+                Grid.Column="0"
+                Width="70"
+                Height="40"
+                Margin="5"
+                Content="Timer Off" />
+
+            <Button
+                Grid.Row="9"
+                Grid.Column="1"
+                Width="70"
+                Height="40"
+                Margin="5"
+                Content="👨‍💼" />
+
+            <Button
+                Grid.Row="9"
+                Grid.Column="2"
+                Width="70"
+                Height="40"
+                Margin="5"
+                Content="↖️&#10;↙️" />
+
+            <Button
+                Grid.Row="10"
+                Grid.Column="0"
+                Width="70"
+                Height="40"
+                Margin="5,5,5,10"
+                Content="🕒" />
+
+            <Button
+                Grid.Row="10"
+                Grid.Column="1"
+                Width="70"
+                Height="40"
+                Margin="5,5,5,10"
+                Content="🆗" />
+
+            <Button
+                Grid.Row="10"
+                Grid.Column="2"
+                Width="70"
+                Height="40"
+                Margin="5,5,5,10"
+                Content="↙️↘️" />
+
+        </Grid>
+    </Border>
 </Window>

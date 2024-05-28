@@ -73,6 +73,7 @@ namespace RemoteControlArduino.ViewModels
                     OutputInfo = $"{SelectedPort} is connected";
                     OutputInfoColor = Brushes.Black;
                     ConnectButtonName = "Disconnect";
+                    OutputInfoColor = Brushes.Green;
                     ConnectButtonColor = Brushes.Orange;
                                         
                     UpdateButtonIsEnabled = false;

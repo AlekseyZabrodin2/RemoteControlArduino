@@ -24,6 +24,9 @@ namespace RemoteControlArduino.ViewModels
         public string? _connectButtonName = "Connect";
 
         [ObservableProperty]
+        public string? _colorProperty;
+
+        [ObservableProperty]
         public bool? _portIsEnabled = true;
 
         [ObservableProperty]
@@ -46,15 +49,6 @@ namespace RemoteControlArduino.ViewModels
         [NotifyCanExecuteChangedFor(nameof(UpdatePortsCommand))]
         public bool _updateButtonIsEnabled = true;
 
-        [ObservableProperty]
-        public Brush _comboBoxColor = Brushes.Black;
-
-        [ObservableProperty]
-        public Brush _outputInfoColor = Brushes.Black;
-
-        [ObservableProperty]
-        public Brush _connectButtonColor = Brushes.YellowGreen;
-
         
 
         [RelayCommand(CanExecute = nameof(ConectionButtonIsEnabled))]
@@ -67,35 +61,22 @@ namespace RemoteControlArduino.ViewModels
                     SelectedSerialPort.PortName = SelectedPort;
                     SelectedSerialPort.BaudRate = 250000;
                     SelectedSerialPort.Open();
-                    PortIsEnabled = false;
 
-                    ComboBoxColor = Brushes.Gray;
+                    ChangePropertiesWhenConnecting(false, "Disconnect");
                     OutputInfo = $"{SelectedPort} is connected";
-                    OutputInfoColor = Brushes.Black;
-                    ConnectButtonName = "Disconnect";
-                    OutputInfoColor = Brushes.Green;
-                    ConnectButtonColor = Brushes.Orange;
-                                        
-                    UpdateButtonIsEnabled = false;
                 }
                 catch (Exception ex)
                 {
+                    ColorProperty = "Error";
                     OutputInfo = ex.Message;
-                    OutputInfoColor = Brushes.Red;
                 }
             }
             else if (ConnectButtonName == "Disconnect")
             {
                 SelectedSerialPort.Close();
-                ConnectButtonName = "Connect";
-                ConnectButtonColor = Brushes.YellowGreen;
 
-                ComboBoxColor = Brushes.Black;
-                PortIsEnabled = true;
-                OutputInfoColor = Brushes.Black;
+                ChangePropertiesWhenConnecting(true, "Connect");
                 OutputInfo = $"{SelectedPort} is disconnect";
-
-                UpdateButtonIsEnabled = true;
             }
         }
 
@@ -127,6 +108,14 @@ namespace RemoteControlArduino.ViewModels
             {
                 SelectedSerialPort.Write("1");
             }
+        }
+
+        private void ChangePropertiesWhenConnecting(bool status, string statusConnecting)
+        {
+            PortIsEnabled = status;
+            UpdateButtonIsEnabled = status;
+            ConnectButtonName = statusConnecting;
+            ColorProperty = statusConnecting;
         }
 
 

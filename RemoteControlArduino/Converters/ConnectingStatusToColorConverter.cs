@@ -55,6 +55,17 @@ namespace RemoteControlArduino.Converters
                     return Brushes.Red;
                 }
             }
+            else if (propertyParameter == "StatusConditioner")
+            {
+                if (propertyValue == "OFF")
+                {
+                    return Brushes.Red;
+                }
+                else
+                {
+                    return Brushes.Green;
+                }
+            }
 
             return DependencyProperty.UnsetValue;
         }

@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:RemoteControlArduino.ViewModels"
+    xmlns:converters="clr-namespace:RemoteControlArduino.Converters"
     Title="Remote Control"
     Width="270"
     Height="650"
@@ -16,6 +17,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:ConnectingStatusToColorConverter x:Key="ConnectingStatusToColorConverter" />
         </ResourceDictionary>
     </Window.Resources>
 
@@ -72,39 +75,35 @@
                     VerticalAlignment="Center"
                     FontSize="13"
                     FontWeight="DemiBold"
-                    Foreground="{Binding OutputInfoColor}"
+                    Foreground="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='OutputInfoColor'}"
                     Text="{Binding OutputInfo, Mode=TwoWay}" />
             </Border>
 
             <ComboBox
                 Grid.Row="2"
                 Grid.Column="0"
-                Width="70"
-                Height="40"
                 Margin="5"
                 VerticalContentAlignment="Center"
-                Foreground="{Binding ComboBoxColor}"
+                Foreground="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='ComboBoxColor'}"
                 IsEnabled="{Binding PortIsEnabled}"
                 ItemsSource="{Binding PortNamesList}"
-                SelectedItem="{Binding SelectedPort}" />
+                SelectedItem="{Binding SelectedPort}"/>
 
             <Button
                 Grid.Row="2"
                 Grid.Column="1"
-                Width="70"
-                Height="40"
                 Margin="5"
-                Background="{Binding ConnectButtonColor}"
+                Background="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='ConnectButtonColor'}"
                 Command="{Binding ConnectPortCommand}"
-                Content="{Binding ConnectButtonName}" />
+                Content="{Binding ConnectButtonName}"
+                Style="{StaticResource ButtonStyle}" />
             <Button
                 Grid.Row="2"
                 Grid.Column="2"
-                Width="70"
-                Height="40"
                 Margin="5"
                 Command="{Binding UpdatePortsCommand}"
-                Content="Update&#10;  Ports" />
+                Content="Update&#10;  Ports"
+                Style="{StaticResource ButtonStyle}" />
 
             <Border
                 Grid.Row="3"
@@ -121,205 +120,158 @@
             <Button
                 Grid.Row="6"
                 Grid.Column="0"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,5"
-                Content="🔊" />
+                Content="🔊"
+                Style="{StaticResource ButtonStyle}" />
 
             <Button
                 Grid.Row="6"
                 Grid.Column="1"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,5"
-                Content="🔼" />
+                Content="🔼"
+                Style="{StaticResource ButtonStyle}" />
 
             <Button
                 Grid.Row="6"
                 Grid.Column="2"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,5"
-                Content="ON" />
+                Content="ON"
+                Style="{StaticResource ButtonStyle}" />
 
             <Button
                 Grid.Row="7"
                 Grid.Column="0"
-                Width="70"
-                Height="40"
                 Margin="5,5,5,15"
-                VerticalAlignment="Top"
-                Content="📄" />
+                Content="📄"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="7"
                 Grid.Column="0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Mode" />
 
             <Button
                 Grid.Row="7"
                 Grid.Column="1"
-                Width="70"
-                Height="40"
                 Margin="5,5,5,10"
-                VerticalAlignment="Top"
-                Content="🔽" />
+                Content="🔽"
+                Style="{StaticResource ButtonStyle}" />
 
             <Button
                 Grid.Row="7"
                 Grid.Column="2"
-                Width="70"
-                Height="40"
                 Margin="5,5,5,15"
-                VerticalAlignment="Top"
-                Content="🔄️" />
+                Content="🔄️"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="7"
                 Grid.Column="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Fan speed" />
 
             <Button
                 Grid.Row="8"
                 Grid.Column="0"
-                Width="70"
-                Height="40"
                 Margin="5,15,5,15"
-                VerticalAlignment="Top"
-                Content="📳" />
+                Content="📳"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="8"
                 Grid.Column="0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Timer On" />
 
             <Button
                 Grid.Row="8"
                 Grid.Column="1"
-                Width="70"
-                Height="40"
                 Margin="5,15,5,15"
-                VerticalAlignment="Top"
-                Content="🌿" />
+                Content="🌿"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="8"
                 Grid.Column="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Healthy" />
 
             <Button
                 Grid.Row="8"
                 Grid.Column="2"
-                Width="70"
-                Height="40"
                 Margin="5,15,5,15"
-                VerticalAlignment="Top"
-                Content="↖️&#10;    ↘️" />
+                Content="↖️&#10;    ↘️"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="8"
                 Grid.Column="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Air direction" />
 
             <Button
                 Grid.Row="9"
                 Grid.Column="0"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,15"
-                VerticalAlignment="Top"
-                Content="📴" />
+                Content="📴"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="9"
                 Grid.Column="0"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Timer Off" />
 
             <Button
                 Grid.Row="9"
                 Grid.Column="1"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,15"
-                VerticalAlignment="Top"
-                Content="👨‍💼" />
+                Content="👨‍💼"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="9"
                 Grid.Column="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Follow me" />
 
             <Button
                 Grid.Row="9"
                 Grid.Column="2"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,15"
-                VerticalAlignment="Top"
-                Content="↖️&#10;↙️" />
+                Content="↖️&#10;↙️"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="9"
                 Grid.Column="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Swing vert." />
 
             <Button
                 Grid.Row="10"
                 Grid.Column="0"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,15"
-                VerticalAlignment="Top"
-                Content="🕒" />
+                Content="🕒"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="10"
                 Grid.Column="0"
                 Margin="0,0,0,5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Clock" />
 
             <Button
                 Grid.Row="10"
                 Grid.Column="1"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,15"
-                VerticalAlignment="Top"
-                Content="🆗" />
+                Content="🆗"
+                Style="{StaticResource ButtonStyle}" />
 
             <Button
                 Grid.Row="10"
                 Grid.Column="2"
-                Width="70"
-                Height="40"
                 Margin="5,10,5,20"
-                VerticalAlignment="Top"
-                Content="↙️↘️" />
+                Content="↙️↘️"
+                Style="{StaticResource ButtonStyle}" />
             <TextBlock
                 Grid.Row="10"
                 Grid.Column="2"
                 Margin="0,0,0,5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                FontSize="11"
+                Style="{StaticResource TextBlockStyle}"
                 Text="Swing hor." />
 
 

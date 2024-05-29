@@ -30,7 +30,9 @@ namespace RemoteControlArduino.ViewModels
         public string? _statusConditionerButton = "ON";
 
         [ObservableProperty]
-        public bool? _statusConditioner = false;
+        [NotifyCanExecuteChangedFor(nameof(UpTemperatureCommand))]
+        [NotifyCanExecuteChangedFor(nameof(DownTemperatureCommand))]
+        public bool _statusConditioner = false;
 
         [ObservableProperty]
         public bool? _portIsEnabled = true;
@@ -131,13 +133,13 @@ namespace RemoteControlArduino.ViewModels
             }
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
         private void UpTemperature()
         {
 
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
         private void DownTemperature()
         {
 

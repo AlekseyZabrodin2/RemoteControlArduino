@@ -2,10 +2,10 @@
     x:Class="RemoteControlArduino.Views.RemoteControlView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:RemoteControlArduino.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:RemoteControlArduino.ViewModels"
-    xmlns:converters="clr-namespace:RemoteControlArduino.Converters"
     Title="Remote Control"
     Width="270"
     Height="650"
@@ -87,7 +87,7 @@
                 Foreground="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='ComboBoxColor'}"
                 IsEnabled="{Binding PortIsEnabled}"
                 ItemsSource="{Binding PortNamesList}"
-                SelectedItem="{Binding SelectedPort}"/>
+                SelectedItem="{Binding SelectedPort}" />
 
             <Button
                 Grid.Row="2"
@@ -128,14 +128,20 @@
                 Grid.Row="6"
                 Grid.Column="1"
                 Margin="5,10,5,5"
+                Command="{Binding UpTemperatureCommand}"
                 Content="🔼"
                 Style="{StaticResource ButtonStyle}" />
 
             <Button
+                x:Name="TurnOnConditionerButton"
                 Grid.Row="6"
                 Grid.Column="2"
                 Margin="5,10,5,5"
-                Content="ON"
+                Background="{Binding StatusConditionerButton, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='StatusConditioner'}"
+                Command="{Binding TurnOnConditionerCommand}"
+                Content="{Binding StatusConditionerButton}"
+                FontWeight="DemiBold"
+                Foreground="White"
                 Style="{StaticResource ButtonStyle}" />
 
             <Button
@@ -154,6 +160,7 @@
                 Grid.Row="7"
                 Grid.Column="1"
                 Margin="5,5,5,10"
+                Command="{Binding DownTemperatureCommand}"
                 Content="🔽"
                 Style="{StaticResource ButtonStyle}" />
 

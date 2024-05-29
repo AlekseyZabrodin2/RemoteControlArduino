@@ -27,6 +27,12 @@ namespace RemoteControlArduino.ViewModels
         public string? _colorProperty;
 
         [ObservableProperty]
+        public string? _statusConditionerButton = "ON";
+
+        [ObservableProperty]
+        public bool? _statusConditioner = false;
+
+        [ObservableProperty]
         public bool? _portIsEnabled = true;
 
         [ObservableProperty]
@@ -108,6 +114,33 @@ namespace RemoteControlArduino.ViewModels
             {
                 SelectedSerialPort.Write("1");
             }
+        }
+
+        [RelayCommand]
+        private void TurnOnConditioner()
+        {
+            if (StatusConditioner == false)
+            {
+                StatusConditioner = true;
+                StatusConditionerButton = "OFF";
+            }
+            else
+            {
+                StatusConditioner = false;
+                StatusConditionerButton = "ON";
+            }
+        }
+
+        [RelayCommand]
+        private void UpTemperature()
+        {
+
+        }
+
+        [RelayCommand]
+        private void DownTemperature()
+        {
+
         }
 
         private void ChangePropertiesWhenConnecting(bool status, string statusConnecting)

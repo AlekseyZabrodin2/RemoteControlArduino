@@ -7,7 +7,7 @@
     xmlns:viewmodels="clr-namespace:RemoteControlArduino.ViewModels"
     Title="Remote Control"
     Width="270"
-    Height="620"
+    Height="650"
     d:DataContext="{d:DesignInstance Type=viewmodels:RemoteControlViewModel}"
     mc:Ignorable="d">
 
@@ -22,7 +22,7 @@
     <Border
         Width="Auto"
         Height="Auto"
-        Margin="5"
+        Margin="5,5,5,10"
         BorderBrush="Black"
         BorderThickness="1">
 
@@ -66,8 +66,8 @@
                 BorderBrush="Black"
                 BorderThickness="1">
                 <TextBlock
-                    Padding="3"
                     Height="25"
+                    Padding="3"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontSize="13"
@@ -147,8 +147,16 @@
                 Grid.Column="0"
                 Width="70"
                 Height="40"
-                Margin="5,5,5,10"
-                Content="Mode" />
+                Margin="5,5,5,15"
+                VerticalAlignment="Top"
+                Content="📄" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Mode" />
 
             <Button
                 Grid.Row="7"
@@ -156,6 +164,7 @@
                 Width="70"
                 Height="40"
                 Margin="5,5,5,10"
+                VerticalAlignment="Top"
                 Content="🔽" />
 
             <Button
@@ -163,71 +172,137 @@
                 Grid.Column="2"
                 Width="70"
                 Height="40"
-                Margin="5,5,5,10"
+                Margin="5,5,5,15"
+                VerticalAlignment="Top"
                 Content="🔄️" />
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Fan speed" />
 
             <Button
                 Grid.Row="8"
                 Grid.Column="0"
                 Width="70"
                 Height="40"
-                Margin="5,10,5,5"
-                Content="Timer On" />
+                Margin="5,15,5,15"
+                VerticalAlignment="Top"
+                Content="📳" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Timer On" />
 
             <Button
                 Grid.Row="8"
                 Grid.Column="1"
                 Width="70"
                 Height="40"
-                Margin="5,10,5,5"
+                Margin="5,15,5,15"
+                VerticalAlignment="Top"
                 Content="🌿" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Healthy" />
 
             <Button
                 Grid.Row="8"
                 Grid.Column="2"
                 Width="70"
                 Height="40"
-                Margin="5,10,5,5"
+                Margin="5,15,5,15"
+                VerticalAlignment="Top"
                 Content="↖️&#10;    ↘️" />
+            <TextBlock
+                Grid.Row="8"
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Air direction" />
 
             <Button
                 Grid.Row="9"
                 Grid.Column="0"
                 Width="70"
                 Height="40"
-                Margin="5"
-                Content="Timer Off" />
+                Margin="5,10,5,15"
+                VerticalAlignment="Top"
+                Content="📴" />
+            <TextBlock
+                Grid.Row="9"
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Timer Off" />
 
             <Button
                 Grid.Row="9"
                 Grid.Column="1"
                 Width="70"
                 Height="40"
-                Margin="5"
+                Margin="5,10,5,15"
+                VerticalAlignment="Top"
                 Content="👨‍💼" />
+            <TextBlock
+                Grid.Row="9"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Follow me" />
 
             <Button
                 Grid.Row="9"
                 Grid.Column="2"
                 Width="70"
                 Height="40"
-                Margin="5"
+                Margin="5,10,5,15"
+                VerticalAlignment="Top"
                 Content="↖️&#10;↙️" />
+            <TextBlock
+                Grid.Row="9"
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Swing vert." />
 
             <Button
                 Grid.Row="10"
                 Grid.Column="0"
                 Width="70"
                 Height="40"
-                Margin="5,5,5,10"
+                Margin="5,10,5,15"
+                VerticalAlignment="Top"
                 Content="🕒" />
+            <TextBlock
+                Grid.Row="10"
+                Grid.Column="0"
+                Margin="0,0,0,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Clock" />
 
             <Button
                 Grid.Row="10"
                 Grid.Column="1"
                 Width="70"
                 Height="40"
-                Margin="5,5,5,10"
+                Margin="5,10,5,15"
+                VerticalAlignment="Top"
                 Content="🆗" />
 
             <Button
@@ -235,8 +310,18 @@
                 Grid.Column="2"
                 Width="70"
                 Height="40"
-                Margin="5,5,5,10"
+                Margin="5,10,5,20"
+                VerticalAlignment="Top"
                 Content="↙️↘️" />
+            <TextBlock
+                Grid.Row="10"
+                Grid.Column="2"
+                Margin="0,0,0,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="11"
+                Text="Swing hor." />
+
 
         </Grid>
     </Border>

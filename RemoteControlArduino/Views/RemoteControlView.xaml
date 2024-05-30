@@ -121,16 +121,27 @@
                 Grid.Row="6"
                 Grid.Column="0"
                 Margin="5,10,5,5"
-                Content="🔊"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding SwitchingSoundCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconSound.ico" />
+            </Button>
 
             <Button
                 Grid.Row="6"
                 Grid.Column="1"
                 Margin="5,10,5,5"
                 Command="{Binding UpTemperatureCommand}"
-                Content="🔼"
-                Style="{StaticResource ButtonStyle}" />
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="30"
+                    Height="30"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconArrowUp.ico" />
+            </Button>
 
             <Button
                 x:Name="TurnOnConditionerButton"
@@ -148,8 +159,14 @@
                 Grid.Row="7"
                 Grid.Column="0"
                 Margin="5,5,5,15"
-                Content="📄"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding SwitchingModesCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTaskList.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="7"
                 Grid.Column="0"
@@ -161,15 +178,26 @@
                 Grid.Column="1"
                 Margin="5,5,5,10"
                 Command="{Binding DownTemperatureCommand}"
-                Content="🔽"
-                Style="{StaticResource ButtonStyle}" />
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="30"
+                    Height="30"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconArrowDown.ico" />
+            </Button>
 
             <Button
                 Grid.Row="7"
                 Grid.Column="2"
                 Margin="5,5,5,15"
-                Content="🔄️"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding SwitchingFanSpeedCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconFan.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="7"
                 Grid.Column="2"
@@ -180,8 +208,14 @@
                 Grid.Row="8"
                 Grid.Column="0"
                 Margin="5,15,5,15"
-                Content="📳"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding TimerOnCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTimerOn.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="8"
                 Grid.Column="0"
@@ -192,8 +226,14 @@
                 Grid.Row="8"
                 Grid.Column="1"
                 Margin="5,15,5,15"
-                Content="🌿"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding HealthyButtonCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconEcology.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="8"
                 Grid.Column="1"
@@ -204,8 +244,14 @@
                 Grid.Row="8"
                 Grid.Column="2"
                 Margin="5,15,5,15"
-                Content="↖️&#10;    ↘️"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding SwitchingAirDirectionCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="25"
+                    Height="25"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/airDirect.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="8"
                 Grid.Column="2"
@@ -216,8 +262,14 @@
                 Grid.Row="9"
                 Grid.Column="0"
                 Margin="5,10,5,15"
-                Content="📴"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding TimerOffCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTimerOff.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="9"
                 Grid.Column="0"
@@ -228,8 +280,14 @@
                 Grid.Row="9"
                 Grid.Column="1"
                 Margin="5,10,5,15"
-                Content="👨‍💼"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding FollowMeButtonCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconMan.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="9"
                 Grid.Column="1"
@@ -240,8 +298,14 @@
                 Grid.Row="9"
                 Grid.Column="2"
                 Margin="5,10,5,15"
-                Content="↖️&#10;↙️"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding SwitchingSwingVerticalCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="25"
+                    Height="25"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/arrowVert.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="9"
                 Grid.Column="2"
@@ -252,8 +316,14 @@
                 Grid.Row="10"
                 Grid.Column="0"
                 Margin="5,10,5,15"
-                Content="🕒"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding ClockSettingCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconClock.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="10"
                 Grid.Column="0"
@@ -265,15 +335,27 @@
                 Grid.Row="10"
                 Grid.Column="1"
                 Margin="5,10,5,15"
-                Content="🆗"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding OkButtonCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="20"
+                    Height="20"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/IconOkButton.ico" />
+            </Button>
 
             <Button
                 Grid.Row="10"
                 Grid.Column="2"
                 Margin="5,10,5,20"
-                Content="↙️↘️"
-                Style="{StaticResource ButtonStyle}" />
+                Command="{Binding SwitchingSwingHorizontalCommand}"
+                Opacity="{Binding OpacityButton}"
+                Style="{StaticResource ButtonStyle}">
+                <Image
+                    Width="25"
+                    Height="25"
+                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/arrowHoriz.ico" />
+            </Button>
             <TextBlock
                 Grid.Row="10"
                 Grid.Column="2"

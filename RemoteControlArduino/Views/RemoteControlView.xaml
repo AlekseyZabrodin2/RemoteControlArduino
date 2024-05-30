@@ -7,8 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:RemoteControlArduino.ViewModels"
     Title="Remote Control"
-    Width="270"
-    Height="650"
+    MaxWidth="270"
+    MaxHeight="650"
+    ResizeMode="CanResizeWithGrip"
     d:DataContext="{d:DesignInstance Type=viewmodels:RemoteControlViewModel}"
     mc:Ignorable="d">
 
@@ -29,341 +30,344 @@
         BorderBrush="Black"
         BorderThickness="1">
 
-        <Grid ShowGridLines="False">
+        <Viewbox>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+            <Grid ShowGridLines="False">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
 
-            <ToggleButton
-                Grid.Row="0"
-                Grid.Column="1"
-                Margin="10,10,10,5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Command="{Binding UpdateArduinoCommand}"
-                IsChecked="{Binding CheckBoxDiod}"
-                Style="{StaticResource ToggleButtonStyle}" />
-
-            <Border
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Margin="5"
-                BorderBrush="Black"
-                BorderThickness="1">
-                <TextBlock
-                    Height="25"
-                    Padding="3"
+                <ToggleButton
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="10,10,10,5"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    FontSize="13"
+                    Command="{Binding UpdateArduinoCommand}"
+                    IsChecked="{Binding CheckBoxDiod}"
+                    Style="{StaticResource ToggleButtonStyle}" />
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Margin="5"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                    <TextBlock
+                        Height="25"
+                        Padding="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        FontWeight="DemiBold"
+                        Foreground="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='OutputInfoColor'}"
+                        Text="{Binding OutputInfo, Mode=TwoWay}" />
+                </Border>
+
+                <ComboBox
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="5"
+                    VerticalContentAlignment="Center"
+                    Foreground="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='ComboBoxColor'}"
+                    IsEnabled="{Binding PortIsEnabled}"
+                    ItemsSource="{Binding PortNamesList}"
+                    SelectedItem="{Binding SelectedPort}" />
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="5"
+                    Background="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='ConnectButtonColor'}"
+                    Command="{Binding ConnectPortCommand}"
+                    Content="{Binding ConnectButtonName}"
+                    Style="{StaticResource ButtonStyle}" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Margin="5"
+                    Command="{Binding UpdatePortsCommand}"
+                    Content="Update&#10;  Ports"
+                    Style="{StaticResource ButtonStyle}" />
+
+                <Border
+                    Grid.Row="3"
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Margin="5"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                    <TextBlock MinHeight="130"/>
+                </Border>
+
+
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Margin="5,10,5,5"
+                    Command="{Binding SwitchingSoundCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconSound.ico" />
+                </Button>
+
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Margin="5,10,5,5"
+                    Command="{Binding UpTemperatureCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="30"
+                        Height="30"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconArrowUp.ico" />
+                </Button>
+
+                <Button
+                    x:Name="TurnOnConditionerButton"
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Margin="5,10,5,5"
+                    Background="{Binding StatusConditionerButton, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='StatusConditioner'}"
+                    Command="{Binding TurnOnConditionerCommand}"
+                    Content="{Binding StatusConditionerButton}"
                     FontWeight="DemiBold"
-                    Foreground="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='OutputInfoColor'}"
-                    Text="{Binding OutputInfo, Mode=TwoWay}" />
-            </Border>
+                    Foreground="White"
+                    Style="{StaticResource ButtonStyle}" />
 
-            <ComboBox
-                Grid.Row="2"
-                Grid.Column="0"
-                Margin="5"
-                VerticalContentAlignment="Center"
-                Foreground="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='ComboBoxColor'}"
-                IsEnabled="{Binding PortIsEnabled}"
-                ItemsSource="{Binding PortNamesList}"
-                SelectedItem="{Binding SelectedPort}" />
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Margin="5,5,5,15"
+                    Command="{Binding SwitchingModesCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTaskList.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Mode" />
 
-            <Button
-                Grid.Row="2"
-                Grid.Column="1"
-                Margin="5"
-                Background="{Binding ColorProperty, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='ConnectButtonColor'}"
-                Command="{Binding ConnectPortCommand}"
-                Content="{Binding ConnectButtonName}"
-                Style="{StaticResource ButtonStyle}" />
-            <Button
-                Grid.Row="2"
-                Grid.Column="2"
-                Margin="5"
-                Command="{Binding UpdatePortsCommand}"
-                Content="Update&#10;  Ports"
-                Style="{StaticResource ButtonStyle}" />
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Margin="5,5,5,10"
+                    Command="{Binding DownTemperatureCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="30"
+                        Height="30"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconArrowDown.ico" />
+                </Button>
 
-            <Border
-                Grid.Row="3"
-                Grid.RowSpan="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Margin="5"
-                BorderBrush="Black"
-                BorderThickness="1">
-                <TextBlock />
-            </Border>
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Margin="5,5,5,15"
+                    Command="{Binding SwitchingFanSpeedCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconFan.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Fan speed" />
 
+                <Button
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Margin="5,15,5,15"
+                    Command="{Binding TimerOnCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTimerOn.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Timer On" />
 
-            <Button
-                Grid.Row="6"
-                Grid.Column="0"
-                Margin="5,10,5,5"
-                Command="{Binding SwitchingSoundCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconSound.ico" />
-            </Button>
+                <Button
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    Margin="5,15,5,15"
+                    Command="{Binding HealthyButtonCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconEcology.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Healthy" />
 
-            <Button
-                Grid.Row="6"
-                Grid.Column="1"
-                Margin="5,10,5,5"
-                Command="{Binding UpTemperatureCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="30"
-                    Height="30"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconArrowUp.ico" />
-            </Button>
+                <Button
+                    Grid.Row="8"
+                    Grid.Column="2"
+                    Margin="5,15,5,15"
+                    Command="{Binding SwitchingAirDirectionCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="25"
+                        Height="25"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/airDirect.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="8"
+                    Grid.Column="2"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Air direction" />
 
-            <Button
-                x:Name="TurnOnConditionerButton"
-                Grid.Row="6"
-                Grid.Column="2"
-                Margin="5,10,5,5"
-                Background="{Binding StatusConditionerButton, Converter={StaticResource ConnectingStatusToColorConverter}, ConverterParameter='StatusConditioner'}"
-                Command="{Binding TurnOnConditionerCommand}"
-                Content="{Binding StatusConditionerButton}"
-                FontWeight="DemiBold"
-                Foreground="White"
-                Style="{StaticResource ButtonStyle}" />
+                <Button
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    Margin="5,10,5,15"
+                    Command="{Binding TimerOffCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTimerOff.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="9"
+                    Grid.Column="0"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Timer Off" />
 
-            <Button
-                Grid.Row="7"
-                Grid.Column="0"
-                Margin="5,5,5,15"
-                Command="{Binding SwitchingModesCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTaskList.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="7"
-                Grid.Column="0"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Mode" />
+                <Button
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    Margin="5,10,5,15"
+                    Command="{Binding FollowMeButtonCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconMan.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="9"
+                    Grid.Column="1"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Follow me" />
 
-            <Button
-                Grid.Row="7"
-                Grid.Column="1"
-                Margin="5,5,5,10"
-                Command="{Binding DownTemperatureCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="30"
-                    Height="30"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconArrowDown.ico" />
-            </Button>
+                <Button
+                    Grid.Row="9"
+                    Grid.Column="2"
+                    Margin="5,10,5,15"
+                    Command="{Binding SwitchingSwingVerticalCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="25"
+                        Height="25"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/arrowVert.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="9"
+                    Grid.Column="2"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Swing vert." />
 
-            <Button
-                Grid.Row="7"
-                Grid.Column="2"
-                Margin="5,5,5,15"
-                Command="{Binding SwitchingFanSpeedCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconFan.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="7"
-                Grid.Column="2"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Fan speed" />
+                <Button
+                    Grid.Row="10"
+                    Grid.Column="0"
+                    Margin="5,10,5,15"
+                    Command="{Binding ClockSettingCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconClock.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="10"
+                    Grid.Column="0"
+                    Margin="0,0,0,5"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Clock" />
 
-            <Button
-                Grid.Row="8"
-                Grid.Column="0"
-                Margin="5,15,5,15"
-                Command="{Binding TimerOnCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTimerOn.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="8"
-                Grid.Column="0"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Timer On" />
+                <Button
+                    Grid.Row="10"
+                    Grid.Column="1"
+                    Margin="5,10,5,15"
+                    Command="{Binding OkButtonCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="20"
+                        Height="20"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/IconOkButton.ico" />
+                </Button>
 
-            <Button
-                Grid.Row="8"
-                Grid.Column="1"
-                Margin="5,15,5,15"
-                Command="{Binding HealthyButtonCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconEcology.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="8"
-                Grid.Column="1"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Healthy" />
-
-            <Button
-                Grid.Row="8"
-                Grid.Column="2"
-                Margin="5,15,5,15"
-                Command="{Binding SwitchingAirDirectionCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="25"
-                    Height="25"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/airDirect.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="8"
-                Grid.Column="2"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Air direction" />
-
-            <Button
-                Grid.Row="9"
-                Grid.Column="0"
-                Margin="5,10,5,15"
-                Command="{Binding TimerOffCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconTimerOff.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="9"
-                Grid.Column="0"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Timer Off" />
-
-            <Button
-                Grid.Row="9"
-                Grid.Column="1"
-                Margin="5,10,5,15"
-                Command="{Binding FollowMeButtonCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconMan.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="9"
-                Grid.Column="1"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Follow me" />
-
-            <Button
-                Grid.Row="9"
-                Grid.Column="2"
-                Margin="5,10,5,15"
-                Command="{Binding SwitchingSwingVerticalCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="25"
-                    Height="25"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/arrowVert.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="9"
-                Grid.Column="2"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Swing vert." />
-
-            <Button
-                Grid.Row="10"
-                Grid.Column="0"
-                Margin="5,10,5,15"
-                Command="{Binding ClockSettingCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/iconClock.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="10"
-                Grid.Column="0"
-                Margin="0,0,0,5"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Clock" />
-
-            <Button
-                Grid.Row="10"
-                Grid.Column="1"
-                Margin="5,10,5,15"
-                Command="{Binding OkButtonCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="20"
-                    Height="20"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/IconOkButton.ico" />
-            </Button>
-
-            <Button
-                Grid.Row="10"
-                Grid.Column="2"
-                Margin="5,10,5,20"
-                Command="{Binding SwitchingSwingHorizontalCommand}"
-                Opacity="{Binding OpacityButton}"
-                Style="{StaticResource ButtonStyle}">
-                <Image
-                    Width="25"
-                    Height="25"
-                    Source="pack://application:,,,/RemoteControlArduino;component/Resources/arrowHoriz.ico" />
-            </Button>
-            <TextBlock
-                Grid.Row="10"
-                Grid.Column="2"
-                Margin="0,0,0,5"
-                Style="{StaticResource TextBlockStyle}"
-                Text="Swing hor." />
-
-
-        </Grid>
+                <Button
+                    Grid.Row="10"
+                    Grid.Column="2"
+                    Margin="5,10,5,20"
+                    Command="{Binding SwitchingSwingHorizontalCommand}"
+                    Opacity="{Binding OpacityButton}"
+                    Style="{StaticResource ButtonStyle}">
+                    <Image
+                        Width="25"
+                        Height="25"
+                        Source="pack://application:,,,/RemoteControlArduino;component/Resources/arrowHoriz.ico" />
+                </Button>
+                <TextBlock
+                    Grid.Row="10"
+                    Grid.Column="2"
+                    Margin="0,0,0,5"
+                    Style="{StaticResource TextBlockStyle}"
+                    Text="Swing hor." />
+                
+                
+            </Grid>
+        </Viewbox>
     </Border>
 </Window>

@@ -30,8 +30,23 @@ namespace RemoteControlArduino.ViewModels
         public string? _statusConditionerButton = "ON";
 
         [ObservableProperty]
+        public double _opacityButton = 0.4;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SwitchingSoundCommand))]
+        [NotifyCanExecuteChangedFor(nameof(SwitchingModesCommand))]
         [NotifyCanExecuteChangedFor(nameof(UpTemperatureCommand))]
         [NotifyCanExecuteChangedFor(nameof(DownTemperatureCommand))]
+        [NotifyCanExecuteChangedFor(nameof(SwitchingFanSpeedCommand))]
+        [NotifyCanExecuteChangedFor(nameof(TimerOnCommand))]
+        [NotifyCanExecuteChangedFor(nameof(TimerOffCommand))]
+        [NotifyCanExecuteChangedFor(nameof(ClockSettingCommand))]
+        [NotifyCanExecuteChangedFor(nameof(HealthyButtonCommand))]
+        [NotifyCanExecuteChangedFor(nameof(FollowMeButtonCommand))]
+        [NotifyCanExecuteChangedFor(nameof(OkButtonCommand))]
+        [NotifyCanExecuteChangedFor(nameof(SwitchingAirDirectionCommand))]
+        [NotifyCanExecuteChangedFor(nameof(SwitchingSwingVerticalCommand))]
+        [NotifyCanExecuteChangedFor(nameof(SwitchingSwingHorizontalCommand))]
         public bool _statusConditioner = false;
 
         [ObservableProperty]
@@ -125,11 +140,13 @@ namespace RemoteControlArduino.ViewModels
             {
                 StatusConditioner = true;
                 StatusConditionerButton = "OFF";
+                OpacityButton = 1;
             }
             else
             {
                 StatusConditioner = false;
                 StatusConditionerButton = "ON";
+                OpacityButton = 0.4;
             }
         }
 
@@ -141,6 +158,78 @@ namespace RemoteControlArduino.ViewModels
 
         [RelayCommand(CanExecute = nameof(StatusConditioner))]
         private void DownTemperature()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void SwitchingSound()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void SwitchingModes()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void SwitchingFanSpeed()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void TimerOn()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void TimerOff()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void ClockSetting()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void HealthyButton()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void FollowMeButton()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void OkButton()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void SwitchingAirDirection()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void SwitchingSwingVertical()
+        {
+
+        }
+
+        [RelayCommand(CanExecute = nameof(StatusConditioner))]
+        private void SwitchingSwingHorizontal()
         {
 
         }

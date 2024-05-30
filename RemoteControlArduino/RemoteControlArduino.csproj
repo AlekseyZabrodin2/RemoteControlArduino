@@ -13,4 +13,21 @@
     <PackageReference Include="System.IO.Ports" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="Resources\airDirect.ico" />
+    <Resource Include="Resources\arrowHoriz.ico" />
+    <Resource Include="Resources\arrowVert.ico" />
+    <Resource Include="Resources\iconArrowDown.ico" />
+    <Resource Include="Resources\iconArrowUp.ico" />
+    <Resource Include="Resources\iconClock.ico" />
+    <Resource Include="Resources\iconEcology.ico" />
+    <Resource Include="Resources\iconFan.ico" />
+    <Resource Include="Resources\iconMan.ico" />
+    <Resource Include="Resources\IconOkButton.ico" />
+    <Resource Include="Resources\iconSound.ico" />
+    <Resource Include="Resources\iconTaskList.ico" />
+    <Resource Include="Resources\iconTimerOff.ico" />
+    <Resource Include="Resources\iconTimerOn.ico" />
+  </ItemGroup>
+
 </Project>
